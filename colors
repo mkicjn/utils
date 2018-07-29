@@ -1,0 +1,21 @@
+#!/usr/bin/perl
+sub print_256color {
+	print "\033[48;5;",$_[0],"m";
+	printf("%3d\033[m ",$_[0]);
+}
+
+print "Standard colors:\n";
+for (30..37) {
+	printf("\033[0;${_}m$_ \033[1mBold\033[m ");
+}
+
+print "\n\n256 colors:\n";
+&print_256color($_) for (0..15);
+print "\033[m\n";
+for (16..231) {
+	print "\033[m\n" if (($_-16)%36==0);
+	&print_256color($_);
+}
+print "\033[m\n\033[m\n";
+&print_256color($_) for (232..255);
+print "\033[m\n";

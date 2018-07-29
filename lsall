@@ -1,0 +1,12 @@
+#!/usr/bin/perl
+# ls -R without fancy formatting
+use strict;
+sub rls ($) {
+	print "$_[0]\n" and return if (! -d $_[0]);
+	&rls($_) for ((<$_[0]/*>));
+}
+if (!@ARGV) {
+	&rls($_) for ((<*>));
+} else {
+	&rls($_=~s/\/$//r) for (@ARGV);
+}

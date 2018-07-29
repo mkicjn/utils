@@ -1,0 +1,2 @@
+#!/bin/sh
+file=$(mktemp); $@ 2> $file; echo -e; cat $file; rm $file

@@ -1,0 +1,2 @@
+#!/usr/bin/perl
+for (@ARGV) {rename($_,s/\.[^.]+$//r)}

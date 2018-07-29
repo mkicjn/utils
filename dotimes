@@ -1,0 +1,2 @@
+#!/usr/bin/perl
+system $ARGV[0] for (1..$ARGV[1]);

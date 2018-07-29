@@ -1,0 +1,5 @@
+#!/usr/bin/perl
+for (@ARGV) {
+	print "$_:\n";
+	system "cat -b $_ | perl -lne 'print if length>80'";
+}

@@ -1,0 +1,6 @@
+#!/usr/bin/perl
+my ($str,@files)=@ARGV;
+for (@files) {
+	print "$_:\n";
+	system("cat -b $_ | grep '$str'");
+}

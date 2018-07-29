@@ -1,0 +1,3 @@
+#!/usr/bin/perl
+my ($cmd,@args)=@ARGV;
+system("$cmd '$_' &") for (@args);

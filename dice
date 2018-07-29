@@ -1,0 +1,4 @@
+#!/usr/bin/perl
+use strict;
+print 1+int(rand $ARGV[0]),"\n" and exit if @ARGV;
+print 1+int(rand 20),"\n";

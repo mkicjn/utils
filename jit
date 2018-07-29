@@ -1,0 +1,2 @@
+#!/bin/sh
+t=$(mktemp); cc $1 -o $t && $t; rm $t

@@ -1,0 +1,12 @@
+#!/usr/bin/perl
+use strict;
+my %seen;
+for (@ARGV) {
+	`md5sum $_`=~/([\da-f]{32})/;
+	my $sum=$1;
+	if ($seen{$sum}) {
+		print "$_ is identical to $seen{$sum}\n";
+	} else {
+		$seen{$sum}=$_;
+	}
+}

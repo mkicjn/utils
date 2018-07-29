@@ -1,0 +1,5 @@
+#!/usr/bin/perl
+my @words = `cat /usr/share/dict/words`;
+chomp for (@words);
+print "$words[rand @words] " for (1..(@ARGV?$ARGV[0]:100));
+print "\n";

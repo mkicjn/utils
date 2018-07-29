@@ -1,0 +1,3 @@
+#!/usr/bin/perl
+$s+=-s $_ for (@ARGV);
+print "$s\n";

@@ -1,0 +1,2 @@
+#!/usr/bin/perl
+for (@ARGV) {print "$_\n" if (-d $_)}

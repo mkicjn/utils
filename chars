@@ -1,0 +1,3 @@
+#!/usr/bin/perl
+print chr($_) for (33..255);
+print "\n";
