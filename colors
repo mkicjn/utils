@@ -9,6 +9,11 @@ for (30..37) {
 	printf("\033[0;${_}m$_ \033[1mBold\033[m ");
 }
 
+print "\n\nAIXterm colors:\n";
+for (90..97) {
+	printf("\033[0;${_}m$_ ");
+}
+
 print "\n\n256 colors:\n";
 &print_256color($_) for (0..15);
 print "\033[m\n";
