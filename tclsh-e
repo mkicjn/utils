@@ -2,8 +2,8 @@
 if {0} {
 #	This script is a substitute for placing the following in ~/.tclshrc
 	if {[lindex $argv 0] eq "-e"} {
-		puts -nonewline [eval [lrange $argv 1 end]]
+		puts -nonewline [eval {*}[lrange $argv 1 end]]
 		exit
 	}
 }
-puts -nonewline [eval "$argv"]
+puts -nonewline [eval {*}$argv]
