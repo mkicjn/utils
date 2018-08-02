@@ -1,10 +1,10 @@
-#!/usr/bin/perl
-for (<>) {
-	chomp;
-	s/ *({|\/\/).*$//; # Remove line comment/opening brace
-	if (/^(\w+ )+[*\w(\)]+\(.*\)[^=;]*$/) { # Function declaration
-		s/(?<=[* ])\w+(?=[,)\[])//g; # Remove argument names
-		s/ (?=[,)\[])//g; # Remove extra spaces
-		print "$_;\n";
+#!/usr/bin/tclsh
+set input [split [read stdin] "\n"]
+foreach line $input {
+	regsub {[ \t]*(\{|//).*$} $line "" line
+	if [regexp {^(?:\w+ )+[*\w()]+\(.*\)[^=;]*$} $line] {
+		regsub -all {([ *])\w+([,)\[])} $line {\1\2} line
+		regsub -all { ([,)\[])} $line {\1} line
+		puts "$line;"
 	}
 }
