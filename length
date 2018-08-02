@@ -1,2 +1,2 @@
-#!/usr/bin/perl
-print length "@ARGV","\n"
+#!/usr/bin/tclsh
+puts [string length $argv]
