@@ -1,3 +1,5 @@
-#!/usr/bin/perl
-$s+=-s $_ for (@ARGV);
-print "$s\n";
+#!/usr/bin/tclsh
+set sum 0
+if {$argv eq ""} {set argv [glob *]}
+foreach file $argv {incr sum [file size $file]}
+puts $sum

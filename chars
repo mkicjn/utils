@@ -1,3 +1,6 @@
-#!/usr/bin/perl
-print chr($_) for (33..255);
-print "\n";
+#!/usr/bin/tclsh
+proc chr {c} {format %c $c}
+for {set i 33} {$i<256} {incr i} {
+	puts -nonewline [chr $i]
+}
+puts ""

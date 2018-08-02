@@ -1,2 +1,4 @@
-#!/usr/bin/perl
-for (@ARGV) {rename($_,s/\.[^.]+$//r)}
+#!/usr/bin/tclsh
+foreach arg $argv {
+	file rename $arg [regsub {\.[^.]+$} $arg {}]
+}

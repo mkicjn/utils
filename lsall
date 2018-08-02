@@ -1,12 +1,8 @@
-#!/usr/bin/perl
+#!/usr/bin/tclsh
 # ls -R without fancy formatting
-use strict;
-sub rls ($) {
-	print "$_[0]\n" and return if (! -d $_[0]);
-	&rls($_) for ((<$_[0]/*>));
+proc rls {file} {
+	if [file isfile $file] {puts $file}
+	catch {foreach f [glob $file/*] {rls $f}}
 }
-if (!@ARGV) {
-	&rls($_) for ((<*>));
-} else {
-	&rls($_=~s/\/$//r) for (@ARGV);
-}
+if {!$argc} {set argv [glob *]}
+foreach arg $argv {rls $arg}

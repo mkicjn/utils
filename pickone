@@ -1,2 +1,2 @@
-#!/usr/bin/perl
-print $ARGV[rand @ARGV],"\n";
+#!/usr/bin/tclsh
+puts [lindex $argv [expr {int(rand()*$argc)}]]
