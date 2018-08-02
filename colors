@@ -1,26 +1,27 @@
-#!/usr/bin/perl
-sub print_256color {
-	print "\033[48;5;",$_[0],"m";
-	printf("%3d\033[m ",$_[0]);
+#!/usr/bin/tclsh
+proc forrange {min max body} {
+	uplevel 1 "for {set i $min} {\$i<$max} {incr i} {$body}"
 }
-
-print "Standard colors:\n";
-for (30..37) {
-	printf("\033[0;${_}m$_ \033[1mBold\033[m ");
+forrange 30 38 {
+	puts -nonewline "\033\[0;${i}m$i \033\[1mBold\033\[m "
 }
-
-print "\n\nAIXterm colors:\n";
-for (90..97) {
-	printf("\033[0;${_}m$_ ");
+puts "\033\[m"
+forrange 90 98 {
+	puts -nonewline "\033\[0;${i}m$i\033\[m "
 }
-
-print "\n\n256 colors:\n";
-&print_256color($_) for (0..15);
-print "\033[m\n";
-for (16..231) {
-	print "\033[m\n" if (($_-16)%36==0);
-	&print_256color($_);
+puts "\033\[m"
+proc 256coldemo {n} {
+	puts -nonewline [format "\033\[48;5;${n}m%3d\033\[m " $n]
 }
-print "\033[m\n\033[m\n";
-&print_256color($_) for (232..255);
-print "\033[m\n";
+forrange 0 16 {
+	256coldemo $i
+}
+puts "\033\[m"
+forrange 16 232 {
+	256coldemo $i
+	if {($i-15)%36==0} {puts "\033\[m"}
+}
+forrange 232 256 {
+	256coldemo $i
+}
+puts "\033\[m"
