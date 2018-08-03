@@ -1,6 +1,12 @@
 #!/usr/bin/tclsh
 set files [lassign $argv str]
 foreach file $files {
+	if [catch {set fh [open $file r]}] {continue}
 	puts "$file:"
-	catch {puts [exec cat -b $file | grep $str]}
+	set l 1
+	foreach line [split [read $fh] "\n"] {
+		if [string match *$str* $line] {puts "$l: $line"}
+		incr l
+	}
+	close $fh
 }
