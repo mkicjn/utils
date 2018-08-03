@@ -1,2 +1,3 @@
-#!/usr/bin/perl
-for (@ARGV) {print "$_\n" if (-d $_)}
+#!/usr/bin/tclsh
+if {![llength $argv]} {set argv [glob *]}
+foreach file $argv {if [file isdirectory $file] {puts $file}}
