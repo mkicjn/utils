@@ -1,3 +1,0 @@
-#!/usr/bin/tclsh
-if {![llength $argv]} {set argv [glob *]}
-foreach file $argv {if [file isdirectory $file] {puts $file}}
