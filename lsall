@@ -1,8 +1,0 @@
-#!/usr/bin/tclsh
-# ls -R without fancy formatting
-proc rls {file} {
-	if [file isfile $file] {puts $file}
-	catch {foreach f [glob $file/*] {rls $f}}
-}
-if {!$argc} {set argv [glob *]}
-foreach arg $argv {rls $arg}
