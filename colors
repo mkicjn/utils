@@ -1,6 +1,9 @@
 #!/usr/bin/tclsh
 proc forrange {min max body} {
-	uplevel 1 "for {set i $min} {\$i<$max} {incr i} {$body}"
+	upvar i i
+	for {set i $min} {$i<$max} {incr i} {
+		uplevel 1 $body
+	}
 }
 forrange 30 38 {
 	puts -nonewline "\033\[0;${i}m$i \033\[1mBold\033\[m "
