@@ -1,2 +1,5 @@
-#!/usr/bin/perl
-system $ARGV[0] while !$? 
+#!/usr/bin/tclsh
+set err ""
+while {$err eq ""} {
+	catch {puts [exec -ignorestderr -- $env(SHELL) -c {*}$argv]} err
+}
