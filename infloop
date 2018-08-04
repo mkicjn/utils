@@ -1,5 +1,2 @@
 #!/usr/bin/tclsh
-set err ""
-while {$err eq ""} {
-	catch {puts [exec -ignorestderr -- $env(SHELL) -c {*}$argv]} err
-}
+while {1} {if [catch {exec -- $env(SHELL) -c {*}$argv >&@ stdout}] break}
