@@ -1,2 +1,2 @@
 #!/usr/bin/tclsh
-puts [[proc {} {{n 20}} {expr {int(rand()*$n)}}] {*}$argv]
+puts [apply {{{n 20}} {expr {int(rand()*$n)}}} {*}$argv]
