@@ -1,2 +1,5 @@
-#!/usr/bin/perl
-chmod(-d $_?0755:0644,$_) for (@ARGV);
+#!/usr/bin/tclsh
+foreach file $argv {
+	set perms [expr {[file isdirectory $file]?0755:0644}]
+	file attributes $file -permissions $perms
+}
