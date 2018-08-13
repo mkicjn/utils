@@ -3,7 +3,10 @@ foreach file $argv {
 	if [catch {set fh [open $file r]}] {continue}
 	puts "$file:"
 	set l 1
-	foreach line [split [read $fh] "\n"] {
+	if [catch {set lines [split [read $fh] "\n"]} err] {
+		puts $err
+	}
+	foreach line $lines {
 		if {[string length $line]>80} {puts "$l: $line"}
 		incr l
 	}
