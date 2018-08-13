@@ -4,7 +4,7 @@ foreach file $argv {
 	puts "$file:"
 	set l 1
 	foreach line [split [read $fh] "\n"] {
-		if {[string length $line]>80} {puts "$l: $string"}
+		if {[string length $line]>80} {puts "$l: $line"}
 		incr l
 	}
 	close $fh
