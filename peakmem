@@ -1,2 +1,0 @@
-#!/bin/sh
-grep VmPeak /proc/$(pgrep $1)/status
