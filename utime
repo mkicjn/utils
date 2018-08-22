@@ -1,2 +1,0 @@
-#!/usr/bin/tclsh
-puts [time {exec -- $env(SHELL) -c [lindex $argv 0] >&@ stdout} {*}[lindex $argv 1]]
