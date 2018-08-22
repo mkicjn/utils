@@ -58,3 +58,9 @@ for {set n 0} {$n<=65} {incr n} {
 		puts "$n: $sgr_desc($n) -- \033\[${n}mexample\033\[m"
 	}
 }
+for {set n 90} {$n<=98} {incr n} {
+	puts "$n: Set foreground color -- \033\[${n}mexample\033\[m"
+}
+for {set n 100} {$n<=108} {incr n} {
+	puts "$n: Set background color -- \033\[${n}mexample\033\[m"
+}
