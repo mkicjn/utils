@@ -1,2 +1,5 @@
-#!/bin/sh
-file=$(mktemp); $@ 2> $file; echo -e; cat $file; rm $file
+#!/usr/bin/tclsh
+set tmp [file tempfile]
+exec -- $env(SHELL) -c {*}$argv >@ stdout 2>@ $tmp
+puts -nonewline [seek $tmp 0; read $tmp]
+close $tmp
