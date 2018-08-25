@@ -1,5 +1,4 @@
 #!/usr/bin/tclsh
-set sum 0
-if {$argv eq ""} {set argv [glob *]}
+if {![llength $argv]} {set argv [glob *]}
 foreach file $argv {incr sum [file size $file]}
 puts $sum
