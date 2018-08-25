@@ -1,8 +1,9 @@
 #!/usr/bin/tclsh
 set input [split [read stdin] "\n"]
 foreach line $input {
-	regsub {[ \t]*(\{|//).*$} $line "" line
-	if [regexp {^(?:\w+ )+[*\w()]+\(.*\)[^=;]*$} $line] {
+	if [string match typedef* $line] continue
+	regsub {[ \t]*(\{|//|;).*$} $line {} line
+	if [regexp {^(?:\w+ )+[*\w()]+\(.*\)[^=\\]*$} $line] {
 		regsub -all {([ *])\w+([,)\[])} $line {\1\2} line
 		regsub -all { ([,)\[])} $line {\1} line
 		puts "$line;"

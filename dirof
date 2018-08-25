@@ -1,2 +1,2 @@
-#!/bin/sh
-echo $@ | rev | cut -d/ -f2- | rev
+#!/usr/bin/tclsh
+puts [regsub {/[^/]*$} $argv {}]
