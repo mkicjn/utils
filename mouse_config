@@ -1,7 +1,15 @@
 #!/usr/bin/tclsh
 lassign $argv keyword
-regexp {id=(\d+)} [exec xinput --list | grep $keyword] => id
-exec xinput --set-prop $id "Coordinate Transformation Matrix" \
-	0.5 0 0 0 0.5 0 0 0 1
-exec xinput --set-prop $id "libinput Scroll Method Enabled" \
-	0 0 1
+foreach line [split [exec xinput --list] "\n"] {
+	if [string match *$keyword* $line] {
+		if ![regexp {id=(\d+)} $line => id] return
+		puts $id
+		catch {exec xinput --set-prop $id "Coordinate Transformation Matrix" \
+			0.5 0 0 0 0.5 0 0 0 1}
+		catch {exec xinput --set-prop $id "libinput Scroll Method Enabled" \
+			0 0 1}
+		catch {exec xinput --set-prop $id "Evdev Wheel Emulation" 1}
+		catch {exec xinput --set-prop $id "Evdev Wheel Emulation Button" 2}
+	}
+}
+
