@@ -1,0 +1,7 @@
+#!/usr/bin/tclsh
+lassign $argv keyword
+regexp {id=(\d+)} [exec xinput --list | grep $keyword] => id
+exec xinput --set-prop $id "Coordinate Transformation Matrix" \
+	0.5 0 0 0 0.5 0 0 0 1
+exec xinput --set-prop $id "libinput Scroll Method Enabled" \
+	0 0 1
