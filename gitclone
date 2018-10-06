@@ -1,0 +1,3 @@
+#!/bin/sh
+# This is just a shortcut for me to quickly retrieve my own projects
+git clone ssh://git@github.com/Armok628/$1.git
