@@ -1,0 +1,14 @@
+export LANG=C
+export LC_ALL=C
+export PATH="$PATH:/home/mark/Documents/projects/utils"
+alias ls="ls --color=auto"
+#if [ $(date +%u) = 3 ]; then
+#	cat ~/.wednesday
+#	echo -e '\n'
+#fi
+if [ -e ~/to-do ]; then
+	echo -e "~/to-do :\n\n$(cat ~/to-do)\n"
+else
+	echo -e "No ~/to-do list\n"
+fi
+ulimit -c unlimited
