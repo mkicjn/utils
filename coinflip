@@ -1,2 +1,2 @@
-#!/usr/bin/tclsh
-puts [expr {int(rand()*2)?"Heads":"Tails"}]
+#!/bin/sh
+pickone Heads Tails

@@ -1,2 +1,3 @@
-#!/usr/bin/tclsh
-puts [string length $argv]
+#!/usr/bin/perl
+$sum+=length for @ARGV;
+print "$sum\n";

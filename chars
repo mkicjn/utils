@@ -1,5 +1,3 @@
-#!/usr/bin/tclsh
-for {set i 33} {$i<256} {incr i} {
-	puts -nonewline [format %c $i]
-}
-puts ""
+#!/usr/bin/perl
+print chr($_) for 0..255;
+print "\n";

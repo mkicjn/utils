@@ -1,13 +1,12 @@
-#!/usr/bin/tclsh
-array set seen [list]
-foreach arg $argv {
-	if [catch {regexp {^([0-9a-f]{32})} [exec md5sum $arg] -> sum} err] {
-		puts $err
-		continue
-	}
-	if [info exists seen($sum)] {
-		puts "$arg is identical to $seen($sum)"
+#!/usr/bin/perl
+use strict;
+my %seen;
+for (@ARGV) {
+	my $sum=$1 if `md5sum $_`=~/([\da-f]{32})/g;
+	next if !$sum;
+	if ($seen{$sum}) {
+		print "$_ => $seen{$sum}\n";
 	} else {
-		set seen($sum) $arg
+		$seen{$sum}=$_;
 	}
 }

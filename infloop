@@ -1,2 +1,2 @@
-#!/usr/bin/tclsh
-while {1} {if [catch {exec -- $env(SHELL) -c {*}$argv >&@ stdout}] break}
+#!/usr/bin/perl
+system join ' ',@ARGV while !$?
