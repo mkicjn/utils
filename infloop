@@ -1,2 +1,2 @@
 #!/usr/bin/perl
-system join ' ',@ARGV while !$?
+system @ARGV while !$?
