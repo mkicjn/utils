@@ -1,8 +1,10 @@
 #!/usr/bin/perl
+sub a ($) {($_>=65 && $_<=90)||($_>=97 && $_<=122)}
+sub b ($) {$_>=97?97:65}
 sub caesar {
 	my ($n,$w) = @_;
-	return join('',map(chr($_<65||$_>91?$_:65+($_-65+$n)%26),map(ord,split(//,uc $w))));
-	# ^ lmao
+	my @chars = map ord, split //, $w;
+	return join('',map(chr(!&a?$_:&b+($_-&b+$n)%26),map(ord,split(//,$w))));
 }
 
 my @n = 0..25;
