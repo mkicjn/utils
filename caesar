@@ -1,16 +1,17 @@
 #!/usr/bin/perl
+use strict;
+use warnings;
 sub a ($) {($_>=65 && $_<=90)||($_>=97 && $_<=122)}
 sub b ($) {$_>=97?97:65}
 sub caesar {
 	my ($n,$w) = @_;
-	my @chars = map ord, split //, $w;
-	return join('',map(chr(!&a?$_:&b+($_-&b+$n)%26),map(ord,split(//,$w))));
+	return join '',map chr(!&a?$_:&b+($_-&b+$n)%26),map ord,split //,$w;
 }
 
-my @n = 0..25;
-@n = ($1) if shift(@ARGV)=~/(\d+)/;
-my @lines = (<>);
-foreach my $i (@n) {
+my @ns = 0..25;
+@ns = ($1) and shift if @ARGV and $ARGV[0]=~/(\d+)/;
+my @ls = (<>);
+foreach my $i (@ns) {
 	print "$i:\n";
-	print "\t",caesar($i,$_) for @lines;
+	print "\t",caesar($i,$_) for @ls;
 }
