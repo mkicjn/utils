@@ -9,7 +9,7 @@ sub caesar {
 }
 
 my @ns = 0..25;
-@ns = ($1) and shift if @ARGV and $ARGV[0]=~/(\d+)/;
+@ns = ($1) and shift if @ARGV and $ARGV[0]=~/(-?\d+)/;
 my @ls = (<>);
 foreach my $i (@ns) {
 	print "$i:\n";
