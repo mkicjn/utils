@@ -1,0 +1,21 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+my ($k,$i,$d)=@ARGV;
+$i=~s/[^a-zA-Z]//g;
+$k=$k x(length($i)/length($k)+1);
+my @k = map ord,split //, $k;
+my @i = map ord,split //, $i;
+sub a ($) {$_[0]>=97?97:65}
+sub e ($) {
+	my ($k,$i)=@_;
+	return chr(($i-a($i)+$k-a($k))%26+65);
+}
+sub d ($) {
+	my ($k,$i)=@_;
+	return chr(($i-a($i)-$k+a($k))%26+65);
+}
+my $f = $d?\&d:\&e;
+while (@i) {
+	print &$f(shift @k,shift @i);
+}

@@ -1,0 +1,12 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+sub l ($) {($_>=65 && $_<=90)||($_>=97 && $_<=122)}
+sub a ($) {$_>=97?97:65}
+sub z ($) {$_>=97?122:90}
+sub atbash {
+	my ($w) = @_;
+	return join '',map chr(!&l?$_:&z-$_+&a),map ord,split //,$w;
+}
+
+print atbash($_) for (<>);
