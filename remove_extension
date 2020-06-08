@@ -1,4 +1,4 @@
-#!/usr/bin/tclsh
+#!/usr/bin/env tclsh
 foreach arg $argv {
 	file rename $arg [file rootname $arg]
 }

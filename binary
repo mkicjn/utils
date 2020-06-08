@@ -1,4 +1,4 @@
-#!/usr/bin/tclsh
+#!/usr/bin/env tclsh
 foreach str $argv {
 	puts [binary format b* [string reverse $str]]
 }

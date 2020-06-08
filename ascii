@@ -1,0 +1,8 @@
+#!/usr/bin/env tclsh
+foreach a $argv {
+	if {[string length $a] > 1} {
+		puts [format %c $a]
+	} else {
+		puts [scan $a %c]
+	}
+}

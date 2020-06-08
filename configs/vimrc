@@ -7,10 +7,13 @@ set undofile
 set autoindent
 set backup
 set incsearch
-set backupdir=~/.vim/tmp,.
-set directory=~/.vim/tmp,.
+set noerrorbells
+set backupdir=~/.vim/tmp//,.
+set directory=~/.vim/tmp//,.
 filetype plugin indent on
 syntax enable
 if has("autocmd")
 	  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
+
+nnoremap <C-L> :nohlsearch<CR><C-L>

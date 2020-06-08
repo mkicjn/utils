@@ -1,4 +1,4 @@
-#!/usr/bin/tclsh
+#!/usr/bin/env tclsh
 array set sgr_desc [list \
 	"0" "Reset / Normal" \
 	"1" "Bold or increased intensity" \

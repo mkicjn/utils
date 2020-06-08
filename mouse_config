@@ -1,4 +1,4 @@
-#!/usr/bin/tclsh
+#!/usr/bin/env tclsh
 lassign $argv keyword
 foreach line [split [exec xinput --list] "\n"] {
 	if [string match *$keyword* $line] {

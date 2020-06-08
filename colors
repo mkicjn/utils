@@ -1,4 +1,4 @@
-#!/usr/bin/tclsh
+#!/usr/bin/env tclsh
 proc forrange {min max body} {
 	upvar i i
 	for {set i $min} {$i<$max} {incr i} {

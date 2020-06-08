@@ -1,4 +1,4 @@
-#!/usr/bin/tclsh
+#!/usr/bin/env tclsh
 if {0} {
 #	This script is a substitute for placing the following in ~/.tclshrc
 	if {[lindex $argv 0] eq "-e"} {

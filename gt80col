@@ -1,2 +1,2 @@
-#!/usr/bin/awk -f
+#!/usr/bin/env awk -f
 length > 80 {print FILENAME, FNR, $0}

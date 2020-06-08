@@ -1,2 +1,2 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 chmod (-d $_?0755:0644), $_ for @ARGV;

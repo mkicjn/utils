@@ -1,4 +1,4 @@
-#!/usr/bin/tclsh
+#!/usr/bin/env tclsh
 set tmp [file tempfile]
 exec -- $env(SHELL) -c {*}$argv >@ stdout 2>@ $tmp
 puts -nonewline [seek $tmp 0; read $tmp]

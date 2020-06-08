@@ -2,14 +2,13 @@
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-export PATH=$PATH:/home/mark/Documents/projects/utils
 
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
 export LANG=C
 export LC_ALL=C
-export PATH="$PATH:/home/mark/Documents/projects/utils"
+export PATH=$PATH:/home/mark/Documents/projects/utils
 alias ls="ls --color=auto"
 alias clang-format="clang-format \
 '-style={BasedOnStyle: LLVM, IndentWidth: 8, UseTab: Always, BreakBeforeBraces: Linux, AllowShortIfStatementsOnASingleLine: false, IndentCaseLabels: false}'"
