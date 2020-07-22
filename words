@@ -1,0 +1,18 @@
+#!/usr/bin/tclsh
+
+foreach word [split [read stdin]] {
+	set word [regsub {^[^a-zA-Z]*} $word {}]
+	set word [regsub {('s)?[^a-zA-Z]*$} $word {}]
+	set seen($word) 1
+}
+
+foreach word [array names seen] {
+	if {[string is lower $word]} continue
+	if {[info exists seen([string tolower $word])]} {
+		unset seen($word)
+	}
+}
+
+foreach word [lsort [array names seen]] {
+	puts $word
+}

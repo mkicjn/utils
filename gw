@@ -6,7 +6,7 @@ global w n
 set w [split [read $fh] "\n"]
 set n [llength $w]
 close $fh
-proc gw {{t 100}} {
+proc gw {{t 40}} {
 	global w n
 	for {} {$t>0} {incr t -1} {
 		puts -nonewline "[lindex $w [expr {int(rand()*$n)}]] "
