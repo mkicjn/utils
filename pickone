@@ -1,2 +1,2 @@
 #!/usr/bin/env perl
-print $ARGV[int(rand()*@ARGV)],"\n";
+print $ARGV[rand(@ARGV)],"\n";
