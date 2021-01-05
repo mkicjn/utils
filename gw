@@ -1,16 +1,18 @@
 #!/usr/bin/env tclsh
-if [catch {set fh [open "/usr/share/dict/words" r]}] {
+lassign $argv prints wordfile
+if {$wordfile eq ""} {set wordfile "/usr/share/dict/words"}
+if {$prints eq ""} {set prints 40}
+
+if [catch {set fh [open $wordfile r]}] {
 	error "No words file"
 }
-global w n
-set w [split [read $fh] "\n"]
-set n [llength $w]
+set words [split [read $fh] "\n"]
 close $fh
-proc gw {{t 40}} {
-	global w n
-	for {} {$t>0} {incr t -1} {
-		puts -nonewline "[lindex $w [expr {int(rand()*$n)}]] "
-	}
+
+proc pick {l} {
+	lindex $l [expr {int(rand()*[llength $l])}]
 }
-gw {*}$argv
+while {[incr prints -1] > 0} {
+	puts -nonewline "[pick $words] "
+}
 puts ""
