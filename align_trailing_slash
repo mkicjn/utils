@@ -1,0 +1,22 @@
+#!/usr/bin/tclsh
+lassign $argv depth tab_width
+if {$depth eq ""} {
+	error "Must provide length argument"
+}
+if {$tab_width eq ""} {
+	set tab_width 8
+}
+while {[gets stdin line] != -1} {
+	regsub -all "\t" $line [string repeat " " $tab_width] line
+	if {[string range $line end end] eq "\\"} {
+		set line [string trimright [string range $line 0 end-1]]
+		set tabs [expr {$depth-([string length $line]/$tab_width)}]
+		set pad " "
+		if {$tabs > 0} {
+			set pad [string repeat "\t" $tabs]
+		}
+		set line [string cat $line $pad "\\"]
+	}
+	regsub -all [string repeat " " $tab_width] $line "\t" line
+	puts $line
+}
