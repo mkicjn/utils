@@ -1,2 +1,8 @@
-#!/usr/bin/env perl
-print $ARGV[rand(@ARGV)],"\n";
+#!/usr/bin/tclsh
+proc pick {l} {return [lindex $l [expr {int(rand()*[llength $l])}]]}
+if {[llength $argv] > 0} {
+	puts [pick $argv]
+} else {
+	set lines [split [string trimright [read stdin]] "\n"]
+	puts [pick $lines]
+}
