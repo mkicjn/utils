@@ -1,5 +1,13 @@
 #!/usr/bin/tclsh
 
+set hide_oldest [expr {[lindex $argv 0] eq "--hide-oldest"}]
+set argv [lrange $argv $hide_oldest end]
+
+if {[llength $argv] == 0} {
+	puts "Usage: $argv0 \[--hide-oldest\] file1 file2 ..."
+	exit 1
+}
+
 # Gather file sizes
 array set sizes [list]
 foreach f [lsort -unique $argv] {
@@ -39,5 +47,5 @@ proc agesort {names} {
 
 # Print all files which are duplicates, in increasing modification time
 foreach h [array names hashes] {
-	puts [lrange [agesort $hashes($h)] 1 end]
+	puts [lrange [agesort $hashes($h)] $hide_oldest end]
 }
