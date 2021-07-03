@@ -1,12 +1,43 @@
-#!/usr/bin/env perl
-use strict;
-my %seen;
-for (@ARGV) {
-	my $sum=$1 if `md5sum $_`=~/([\da-f]{32})/g;
-	next if !$sum;
-	if ($seen{$sum}) {
-		print "$_ => $seen{$sum}\n";
-	} else {
-		$seen{$sum}=$_;
+#!/usr/bin/tclsh
+
+# Gather file sizes
+array set sizes [list]
+foreach f [lsort -unique $argv] {
+	if {[file isfile $f]} {
+		lappend sizes([file size $f]) $f
 	}
+}
+# Eliminate files which have a unique size
+foreach s [array names sizes] {
+	if {[llength $sizes($s)] < 2} {
+		unset sizes($s)
+	}
+}
+
+array set hashes [list]
+# For each file size with multiple files
+foreach s [array names sizes] {
+	# For each file with that size
+	foreach f $sizes($s) {
+		# Gather its hash
+		lappend hashes([lindex [exec -- md5sum -b $f] 0]) $f
+	}
+}
+
+# Eliminate files which have a unique hash
+foreach h [array names hashes] {
+	# If there is only one file with that hash
+	if {[llength $hashes($h)] < 2} {
+		# Print the filenames with that hash
+		unset hashes($h)
+	}
+}
+
+proc agesort {names} {
+	return [lmap n [lsort [lmap n $names {list [file mtime $n] $n}]] {lindex $n 1}]
+}
+
+# Print all files which are duplicates, in increasing modification time
+foreach h [array names hashes] {
+	puts [lrange [agesort $hashes($h)] 1 end]
 }
