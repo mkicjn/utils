@@ -1,6 +1,8 @@
-#!/bin/bash
-if [[ $1 > 0 ]]; then
-	echo $1
-	sleep 1
-	exec $0 $(( $1 - 1 ))
-fi
+#!/usr/bin/tclsh
+set i [lindex $argv 0]
+while {$i > 0} {
+	puts -nonewline "\033\[2J\033\[0;0H$i"
+	flush stdout
+	after 1000
+	incr i -1
+}

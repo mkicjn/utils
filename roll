@@ -1,7 +1,13 @@
 #!/usr/bin/tclsh
 foreach arg $argv {
 	regexp {(\d*)d(\d+)} $arg => count max
-	if {$count eq ""} {set count 1}
+	if {![info exists max] || $max eq "" || $max < 1} {
+		puts 0
+		continue
+	}
+	if {![info exists count] || $count eq ""} {
+		set count 1
+	}
 	set total 0
 	for {set i 0} {$i < $count} {incr i} {
 		incr total [expr {int(rand()*$max)+1}]

@@ -1,0 +1,45 @@
+#!/usr/bin/tclsh
+
+# Works exactly like shuffle, but traverses directories at random instead of picking files with equal distribution
+
+proc pick {l} {return [lindex $l [expr {int(rand()*[llength $l])}]]}
+set paths [lmap l [lrange [split [read stdin] "\n"] 0 end-1] {lrange [file split $l] 1 end}]
+
+set choice [list]
+
+while 1 {
+	set files [list]
+	set dirs [list]
+	# Collect options
+	foreach p $paths {
+		if {[llength $p] > 1 && [lindex $p 0] ni $dirs} {
+			lappend dirs [lindex $p 0]
+		} elseif {[llength $p] == 1} {
+			lappend files [lindex $p 0]
+		}
+	}
+	if {[llength $files] > 0} {
+		lappend dirs .
+	}
+	# Select a directory
+	set next_dir [pick $dirs]
+	# If the pwd was chosen, pick a file and quit
+	if {$next_dir eq "."} {
+		lappend choice [pick $files]
+		break
+	}
+	# Otherwise, eliminate unpicked options
+	lappend choice $next_dir
+	set remaining [list]
+	foreach p $paths {
+		if {[llength $p] > 1 && [lindex $p 0] eq $next_dir} {
+			lappend remaining [lrange $p 1 end]
+		}
+	}
+	set paths $remaining
+	unset remaining
+}
+
+set choice [file join {*}$choice]
+
+exit [catch {exec -ignorestderr {*}$argv $choice 2>@1}]

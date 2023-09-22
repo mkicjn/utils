@@ -12,7 +12,7 @@ close $fh
 proc pick {l} {
 	lindex $l [expr {int(rand()*[llength $l])}]
 }
-while {[incr prints -1] > 0} {
+while {[incr prints -1] >= 0} {
 	puts -nonewline "[pick $words] "
 }
 puts ""
